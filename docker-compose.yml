@@ -1,0 +1,7 @@
+version: "3"
+services:
+  apache:
+    build: .
+    image: apache2048:latest
+    ports:
+      - 8080:80
