@@ -2,6 +2,6 @@ version: "3"
 services:
   apache:
     build: .
-    image: nginx2048:latest
+    image: ghcr.io/ericheresi/hello-2048/nginx2048:latest
     ports:
       - 8080:80
