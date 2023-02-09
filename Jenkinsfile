@@ -2,13 +2,20 @@ pipeline {
     agent any
 
     stages {
-        stage('Image build an push'){
+	stage('Git Login'){
+	    steps {
+		withCredentials([string(credentialsId: 'github-token', variable: 'GIT_TOKEN')]) {
+		    sh 'echo $GIT_TOKEN' | docker login ghcr.io -u EricHeresi -password-stdin'
+		}
+	    }
+	}
+        stage('Image generation'){
             steps {
                 sh 'docker-compose build'
                 sh 'docker-compose push'
             }
         }
-        stage('AWS_build') {
+        stage('AWS deploy') {
             steps {
                 sshagent(['ssh_amazon']) {
                     sh 'ssh ec2-user@3.250.172.231 docker pull ghcr.io/ericheresi/hello-2048/nginx2048:latest'
