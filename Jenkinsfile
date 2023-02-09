@@ -5,7 +5,7 @@ pipeline {
 	stage('Git Login'){
 	    steps {
 		withCredentials([string(credentialsId: 'github-token', variable: 'GIT_TOKEN')]) {
-		    sh 'echo $GIT_TOKEN' | docker login ghcr.io -u EricHeresi --password-stdin'
+		    sh 'echo $GIT_TOKEN | docker login ghcr.io -u EricHeresi --password-stdin'
 		}
 	    }
 	}
