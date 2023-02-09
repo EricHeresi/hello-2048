@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-	BUILD_NUMBER = '5'
+	BUILD_NUMBER = '6'
     }
     stages {
 	stage('Git Login'){
