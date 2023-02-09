@@ -11,7 +11,7 @@ pipeline {
 	}
         stage('Image generation'){
             steps {
-		sh 'docker compose build'
+		sh 'docker-compose build'
                 sh 'VERSION_TAG=1.0.${BUILD_NUMBER} docker-compose build'
 		sh 'git tag 1.0.${BUILD_NUMBER}'
 		sshagent(['github-ssh']) {
