@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-	BUILD_NUMBER = '13'
+	BUILD_NUMBER = '14'
     }
     stages {
 	stage('Git Login'){
@@ -24,8 +24,8 @@ pipeline {
         stage('AWS deploy') {
             steps {
                 sshagent(['ssh_amazon']) {
-		    sh 'ssh ec2-user@3.250.172.231 docker pull ghcr.io/ericheresi/hello-2048/nginx2048:${BUILD_NUMBER}'
-                    sh 'ssh ec2-user@3.250.172.231 docker run -dt --rm -p 80:80 ghcr.io/ericheresi/hello-2048/nginx2048:${BUILD_NUMBER}'
+		    sh 'ssh ec2-user@3.250.172.231 docker pull ghcr.io/ericheresi/hello-2048/nginx2048:1.0.${BUILD_NUMBER}'
+                    sh 'ssh ec2-user@3.250.172.231 docker run -dt --rm -p 80:80 ghcr.io/ericheresi/hello-2048/nginx2048:1.0.${BUILD_NUMBER}'
                 }
             }
         }
