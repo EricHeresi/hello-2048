@@ -15,7 +15,9 @@ pipeline {
             steps {
                 sh 'docker-compose build'
 		sh 'git tag 1.0.${BUILD_NUMBER}'
-		sh 'git push --tags'
+		withCredentials([gitUsernamePassword(credentialsId: 'github-auth', gitToolName: 'Default')]) {
+		    sh 'git push --tags'
+		}
                 sh 'docker-compose push'
             }
         }
