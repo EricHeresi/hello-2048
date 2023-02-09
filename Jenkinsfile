@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    environment {
+	BUILD_NUMBER = '1'
+    }
     stages {
 	stage('Git Login'){
 	    steps {
@@ -12,6 +14,8 @@ pipeline {
         stage('Image generation'){
             steps {
                 sh 'docker-compose build'
+		sh 'git tag 1.0.${BUILD_NUMBER}'
+		sh 'git push --tags'
                 sh 'docker-compose push'
             }
         }

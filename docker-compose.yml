@@ -2,6 +2,12 @@ version: "3"
 services:
   apache:
     build: .
-    image: ghcr.io/ericheresi/hello-2048/nginx2048:latest
+    image: ghcr.io/ericheresi/hello-2048/nginx2048
     ports:
       - 8080:80
+  version_tag:
+    extends: apache
+    image: ghcr.io/ericheresi/hello-2048/nginx2048:latest
+  some_other_tag:
+    extends: apache
+    image: ghcr.io/ericheresi/hello-2048/nginx2048:1.0.${BUILD_NMUMBER}
