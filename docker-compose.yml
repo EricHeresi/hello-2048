@@ -10,4 +10,4 @@ services:
     image: ghcr.io/ericheresi/hello-2048/nginx2048:latest
   some_other_tag:
     extends: apache
-    image: ghcr.io/ericheresi/hello-2048/nginx2048:${version}
+    image: ghcr.io/ericheresi/hello-2048/nginx2048:${MY_TAG}

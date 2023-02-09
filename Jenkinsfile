@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-	BUILD_NUMBER = '10'
+	BUILD_NUMBER = '11'
     }
     stages {
 	stage('Git Login'){
@@ -13,12 +13,11 @@ pipeline {
 	}
         stage('Image generation'){
             steps {
-                sh 'docker-compose build'
+                sh 'MY_TAG=1.0.${BUILD_NUMBER} docker-compose build'
 		sh 'git tag 1.0.${BUILD_NUMBER}'
 		sshagent(['github-ssh']) {
 		    sh 'git push git@github.com:EricHeresi/hello-2048.git --tags'
 		}
-		sh 'export version=1.0.${BUILD_NUMBER}'
                 sh 'docker-compose push'
             }
         }
