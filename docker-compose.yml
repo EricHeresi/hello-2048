@@ -2,9 +2,6 @@ version: "3"
 services:
   nginx:
     build: .
-    image: ghcr.io/ericheresi/hello-2048/nginx2048
+    image: ghcr.io/ericheresi/hello-2048/nginx2048:{VERSION_TAG:-latest}
     ports:
       - 8080:80
-  version_tag:
-    extends: nginx
-    image: ghcr.io/ericheresi/hello-2048/nginx2048:${MY_TAG}
